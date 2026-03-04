@@ -19,7 +19,7 @@ public class SlidingWindowRateLimiter implements IRateLimiterInterface {
     }
 
     @Override
-    public boolean allowRequest(String userId) {
+    public synchronized boolean allowRequest(String userId) {
         long currentTime = System.currentTimeMillis();
         map.putIfAbsent(userId, new LinkedList<>());
         Deque<Long> timestamps = map.get(userId);
