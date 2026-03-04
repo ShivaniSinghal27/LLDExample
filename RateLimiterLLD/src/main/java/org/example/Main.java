@@ -7,10 +7,13 @@ public class Main {
         RateLimiterServiceImpl service = new RateLimiterServiceImpl();
         service.registerUserRateLimiter("user1", "Fixed", 3, 2 );
         service.registerUserRateLimiter("user2", "Fixed", 3, 4 );
+        service.registerUserRateLimiter("user3", "Sliding", 2, 1 );
+
 
         for (int i = 0; i <= 5; i++) {
             System.out.println("User 1 Request " + (i + 1) + " : " + service.allowRequest("user1"));
             System.out.println("User 2 Request " + (i + 1) + " : " + service.allowRequest("user2"));
+            System.out.println("User 3 Request " + (i + 1) + " : " + service.allowRequest("user3"));
             Thread.sleep(1000);
         }
     }

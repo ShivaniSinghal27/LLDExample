@@ -2,6 +2,7 @@ package org.example.controller;
 
 import org.example.service.IRateLimiterInterface;
 import org.example.service.impl.FixedWindowRateLimiter;
+import org.example.service.impl.SlidingWindowRateLimiter;
 
 public class RateLimiterFactory {
 
@@ -9,6 +10,8 @@ public class RateLimiterFactory {
             switch(type) {
                 case "Fixed":
                     return new FixedWindowRateLimiter(allowedRequests, windowTimeSec*1000);
+                case "Sliding":
+                    return new SlidingWindowRateLimiter(allowedRequests, windowTimeSec*1000);
 
                 default:
                     throw new RuntimeException("Not support type:" + type);
